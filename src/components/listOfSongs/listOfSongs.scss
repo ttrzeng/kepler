@@ -1,7 +1,8 @@
-.listOfSongs {
+#listOfSongs {
+  width: 350px;
+
   ul {
     padding: 0;
-    width: fit-content;
   }
 
   .song {

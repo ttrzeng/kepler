@@ -1,7 +1,7 @@
 //LIBRARIES
 import React, { PureComponent } from "react";
 import {
-  Form, Icon, Input, Button, Modal, Card, Row, Col
+  Form, Icon, Input, Button, Modal, Card
 } from 'antd';
 
 //UTILS
@@ -45,12 +45,16 @@ class getUserSongsForm extends PureComponent<Props, State> {
 
       handleSubmit(e) {
         e.preventDefault();
+        let listOfSongs = [];
         this.props.form.validateFields((err, values) => {
           if (!err) {
             getAllSongs(values.email, values.password)
               .then(res => {
                 if(JSON.parse(res.response._attributes.success)) {
-                  this.setState({songs: res.response.songs.song._text.trim()});
+                  res.response.songs.song.forEach(id => {
+                    listOfSongs.push(id._text.trim());
+                  });
+                  this.setState({songs: listOfSongs});
                   this.setState({response: "Successfully obtained user songs"}, () => this.resSuccess());
                 } else {
                   this.setState({response: res.response._text}, () => this.resError());
@@ -65,7 +69,8 @@ class getUserSongsForm extends PureComponent<Props, State> {
         const { getFieldDecorator } = this.props.form;
 
         return (
-          <div>
+          <div id="getUserSongs">
+            <h2>Get user info</h2>
             <Form onSubmit={ this.handleSubmit }>
               <Form.Item>
                 {
@@ -87,15 +92,20 @@ class getUserSongsForm extends PureComponent<Props, State> {
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button">
-                  Get user info
+                  Get
                 </Button>
               </Form.Item>
             </Form>
             <div>
-              <h3>User last downloaded song Id</h3>
-              <Card style={{ width: 300 }}>
+              <h3>List of songs downloaded by user</h3>
+              <Card style={{ width: 350 }}>
                 {
-                  <p>{this.state.songs}</p>
+                  this.state.songs &&
+                  this.state.songs.map((song, index) => {
+                    return(
+                      <p key={index}>{song}</p>
+                    )
+                  })
                 }
               </Card>
             </div>

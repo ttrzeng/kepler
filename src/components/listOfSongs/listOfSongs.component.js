@@ -92,7 +92,8 @@ class ListOfSongsForm extends PureComponent<Props, State> {
         const { getFieldDecorator } = this.props.form;
 
         return (
-          <div className="listOfSongs">
+          <div id="listOfSongs">
+            <h2>Login</h2>
             <Form onSubmit={ this.handleSubmit }>
               <Form.Item>
                 {

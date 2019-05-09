@@ -4,7 +4,6 @@ import {
   Form, Icon, Input, Button, Modal,
 } from 'antd';
 
-
 //UTILS
 import { createUser } from '../../utils/apiFunctions';
 
@@ -67,40 +66,43 @@ class createUserForm extends PureComponent<Props, State> {
         const { getFieldDecorator } = this.props.form;
 
         return (
-          <Form onSubmit={ this.handleSubmit }>
-          <Form.Item>
-            {
-              getFieldDecorator('name', {
-                rules: [{ required: true, message: 'Please input your name!' }],
-              })(
-                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Name" />
-              )
-            }
-          </Form.Item>
-            <Form.Item>
-              {
-                getFieldDecorator('email', {
-                  rules: [{ required: true, message: 'Please input your email!' }],
-                })(
-                  <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
-                )
-              }
-            </Form.Item>
-            <Form.Item>
-              {
-                getFieldDecorator('password', {
-                  rules: [{ required: true, message: 'Please input your Password!' }],
-                })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-                )
-              }
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
-                Create
-              </Button>
-            </Form.Item>
-          </Form>
+          <div id="createUserForm">
+            <h2>Add a new user</h2>
+            <Form onSubmit={ this.handleSubmit }>
+              <Form.Item>
+                {
+                  getFieldDecorator('name', {
+                    rules: [{ required: true, message: 'Please input your name!' }],
+                  })(
+                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Name" />
+                  )
+                }
+              </Form.Item>
+              <Form.Item>
+                {
+                  getFieldDecorator('email', {
+                    rules: [{ required: true, message: 'Please input your email!' }],
+                  })(
+                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
+                  )
+                }
+              </Form.Item>
+              <Form.Item>
+                {
+                  getFieldDecorator('password', {
+                    rules: [{ required: true, message: 'Please input your Password!' }],
+                  })(
+                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                  )
+                }
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" className="login-form-button">
+                  Add
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
         );
     }
 }

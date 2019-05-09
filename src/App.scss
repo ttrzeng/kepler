@@ -1,20 +1,28 @@
 .kTunes {
   background: #2bd9c5;
-  height: 100vh;
+  height: 100vh !important;
 
   img {
     border-radius: 50px;
   }
 
+  .ant-layout-sider-trigger {
+    position: absolute;
+  }
+
   .ant-layout {
     background: #2bd9c5;
+  }
 
-    .ant-layout-has-sider {
-      border-radius: 200px;
-    }
+  .ant-form-horizontal {
+    max-width: 350px;
   }
 }
 
 body {
+  background: #2bd9c5;
+}
+
+html {
   background: #2bd9c5;
 }
